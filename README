@@ -1,0 +1,46 @@
+
+@ - apt wrapper
+
+Usage: @ -[QRSU][cdfipqsuy] [<package name>|<search term>]
+
+@ (at) is a wrapper around apt-*|dpkg programs in the style of Arch Linux's 
+pacman. I got sick of remembering to type "cache" instead of "get" etc. and 
+all the commands are sooo long.  Enter @. @ does all the thinking for you, tap
+the right switch and @ applies the query to the correct application and even
+requests sudo for the ones that require it.
+
+This script should be softlinked to /usr/bin/@ on your system by doing this:
+
+    sudo ln -sf /path/to/at.pl /usr/bin/@
+
+Takes a primary command switch and optionally sub switches. The switches can 
+be bundled together in a form such as  `@ -Syu` this will do: 
+apt-get update, followed by apt-get upgrade.
+
+Available switches are described below:
+
+  --help, 
+  -h, -?  - Displays this help message.
+
+  -S     - Primary option: Sync. Runs `apt-get install $x`
+    -y   - Used with 'S', preforms apt-get update before primary operation.
+    -s   - used with 'S', swtiches to `apt-cache search $x` 
+    -c   - used with 'S', switches to `apt-get autoclean`
+    -cc  - used with 'S', switches to `apt-get clean`
+    -u   - used with 'S', switches to `apt-get upgrade`
+    -d   - used with 'S', Alternate to 'u' - switches to apt-get dist-upgrade
+
+  -R     - Primary option: Remove. Runs `apt-get remove $x`
+    -p   - used with 'R', switches to `apt-get purge`
+
+  -Q     - Primary Option: Query. Runs `dpkg -l $x` searchs installed packages.
+    -q   - used with 'Q', searches for files within installed packages.
+    -i   - used with 'Q', gives info about the specified package.
+    -f   - used with 'Q', lists files withing a given package.
+    
+  -U     - Primary Option: Local Install. Runs `dpkg -i $x`
+
+See the man pages for apt-get, apt-cache, and dpkg.
+
+Author: James Ronan <james@ronanweb.co.uk>
+
