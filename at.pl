@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 # A wrapper for apt-* programs to simulate the slick interface of 
-# Arch's "Pacman".  Backtick because ` -Syu is easy to type, and a valid 
-# file name that no one in their right mind would use.
+# Arch's "Pacman".  @ (at) because @ -Syu is easy to type, and a valid 
+# file name that no one in their right mind would use. Also the @ symbol looks 
+# like something wrapped around 'a'.
 #
 # I was sick of the difference between apt-get install * and apt-cache search *
 #
